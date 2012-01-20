@@ -32,6 +32,15 @@ jQuery.fn.lazytyping = function(options)
 	var input = wrapper.find('.lazytyping-input');
 	input.css({border:'none', outline:'none'});
 
+	updateValue = function()
+	{
+		var values = new Array();
+		data.find('li').each(function(){
+			values.push($(this).html());
+		});
+		original.val(values.join(','));
+	}
+
 	addItem = function(value)
 	{
 		data.append($('<li>'+value+'</li>').css(settings.dataItemStyle));
@@ -40,25 +49,16 @@ jQuery.fn.lazytyping = function(options)
 		input.val('');
 	}
 
-	if(input.val())
+	if(original.val())
 	{
-		values = input.val().split(',');
+		values = original.val().split(',');
+		console.log(values);
 		for (i in values)
 		{
 			addItem(values[i]);
 		}
-	}
-	
-	updateValue = function()
-	{
-		var value = '';
-		data.find('li').each(function(){
-			value += $(this).html() + ',';
-		});
-		original.val(value.substr(0,value.length-1));
-		console.log(original.val());
-	}
-		
+	}	
+
 	data.find('li').live('click', function(){ $(this).remove(); updateValue(); });
 	
 	wrapper.on('click', function(){ input.focus() });
