@@ -1,21 +1,18 @@
 <!DOCTYPE html> 
 <html> 
 	<head> 
-		<title>Lazy Typing - jQuery Auto Complete plugin for token input</title> 
+		<title>Tagging - jQuery Tag helper plugin</title> 
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<style> 
-
-		</style>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-		<script src="jquery.lazytyping.js"></script>
+		<script src="jquery.tagging.js"></script>
 		<script>
 			$(document).ready(function(){
-				$('#names').lazytyping({source:'source.php?input='});
+				$('#names').tagging({source:'source.php?input='});
 			});
 		</script>
 	</head> 
 	<body>
-		<h1>Lazy Typing - jQuery Auto Complete plugin for token input</h1>
+		<h1>Tagging - jQuery Tag helper plugin</h1>
 		<p>Start typing</p>
 		<form action="post.php" method="post">
 			<input type="text" name="names" id="names" value="One,Two,Three" />

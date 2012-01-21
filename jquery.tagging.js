@@ -1,4 +1,4 @@
-jQuery.fn.lazytyping = function(options)
+jQuery.fn.tagging = function(options)
 {
 	var settings = $.extend({
 		source : '?input=',
@@ -12,14 +12,14 @@ jQuery.fn.lazytyping = function(options)
 			
 	var loading = false;
 		
-	$(this).wrapAll($('<div class="lazytyping-wrapper" />').css(settings.wrapperStyle));
-	var wrapper = $('.lazytyping-wrapper');
+	$(this).wrapAll($('<div class="tagging-wrapper" />').css(settings.wrapperStyle));
+	var wrapper = $('.tagging-wrapper');
 
-	wrapper.append($('<ul class="lazytyping-data" />').css(settings.dataListStyle));
-	var data = wrapper.find('ul.lazytyping-data');
+	wrapper.append($('<ul class="tagging-data" />').css(settings.dataListStyle));
+	var data = wrapper.find('ul.tagging-data');
 
-	wrapper.append($('<ul class="lazytyping-search" />').css(settings.searchListStyle));
-	var search = wrapper.find('ul.lazytyping-search');
+	wrapper.append($('<ul class="tagging-search" />').css(settings.searchListStyle));
+	var search = wrapper.find('ul.tagging-search');
 	search.find('li').live('click', function()
 	{
 		addItem($(this).data('value'));
@@ -28,8 +28,8 @@ jQuery.fn.lazytyping = function(options)
 	var original = $(this);
 	original.css({'visibility':'hidden', position:'absolute', left:'-9999px' });
 	
-	wrapper.append($('<input type="text" class="lazytyping-input" />'));
-	var input = wrapper.find('.lazytyping-input');
+	wrapper.append($('<input type="text" class="tagging-input" />'));
+	var input = wrapper.find('.tagging-input');
 	input.css({border:'none', outline:'none'});
 
 	updateValue = function()
@@ -83,8 +83,8 @@ jQuery.fn.lazytyping = function(options)
 	changeSelected = function(selected, next)
 	{
 		if (next.length == 0) { return; }
-		selected.removeClass('lazytyping-selected')
-		next.addClass('lazytyping-selected');
+		selected.removeClass('tagging-selected')
+		next.addClass('tagging-selected');
 		selected.css(settings.searchItemStyle);
 		next.css(settings.searchItemStyleSelected);
 		return;
@@ -94,7 +94,7 @@ jQuery.fn.lazytyping = function(options)
 	{
 		if (e.keyCode == 38) // UP
 		{
-			selected = search.find('li.lazytyping-selected');
+			selected = search.find('li.tagging-selected');
 			prev = selected.prev();
 			changeSelected(selected, prev);
 			return;
@@ -102,7 +102,7 @@ jQuery.fn.lazytyping = function(options)
 		}
 		if (e.keyCode == 40) // DOWN
 		{
-			selected = search.find('li.lazytyping-selected');
+			selected = search.find('li.tagging-selected');
 			next = selected.next();
 			changeSelected(selected, next);
 			return;
@@ -122,7 +122,7 @@ jQuery.fn.lazytyping = function(options)
 		
 		if (e.keyCode == 13) // ENTER
 		{
-			addItem(search.find('li.lazytyping-selected').data('value'));
+			addItem(search.find('li.tagging-selected').data('value'));
 			return;
 		}
 		
@@ -134,7 +134,7 @@ jQuery.fn.lazytyping = function(options)
 				search.html(data);
 				search.css({left:input.position().left,top:input.position().top});
 				search.find('li').css(settings.searchItemStyle);
-				search.find('li:first').addClass('lazytyping-selected').css(settings.searchItemStyleSelected);
+				search.find('li:first').addClass('tagging-selected').css(settings.searchItemStyleSelected);
 				return;
 			}
 			search.hide();
